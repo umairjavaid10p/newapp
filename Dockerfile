@@ -15,6 +15,6 @@ FROM nginx:1.15.0-alpine
 ## Copy our default nginx nginx
 COPY nginx/dev.conf /etc/nginx/conf.d/base.conf
 ## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
-COPY ./dist /var/www/app
+COPY ./dist/connect /var/www/app
 COPY robots.txt /var/www/app/
 CMD ["nginx", "-g", "daemon off;"]
