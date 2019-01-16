@@ -1,0 +1,55 @@
+<div fxLayout="column">
+  <div class="center-container full-height" fxLayoutAlign="center center">
+    <div class="auth-wrapper white-container">
+      <div fxLayout="column" fxLayoutAlign="center" fxFlex="45%" class="auth-left-wrap mob-hide">
+        <i class="betts-small-logo"></i>
+        <h1 i18n="@@shared-companyTagLine">We build careers and world class companies</h1>
+      </div>
+      <div fxLayout="column" fxFlexAlign="center" fxFlex="55%" class="auth-right-wrap">
+        <div class="mob-show">
+          <i class="betts-small-logo"></i>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxFlex="1 0 auto" fxLayout="column" fxLayoutAlign="space-between">
+          <div>
+            <h2 i18n="@@auth-login-loginMessage">Log into your account</h2>
+            <h3 i18n="@@auth-login-loginBettsMessage">Log into betts with ...</h3>
+            <div fxLayout="row" fxLayoutAlign="space-around" class="social-login">
+              <button type="button" class="facebook" (click)="socialLogin(socialIdentityProvider.facebook)">
+                <i class="betts-facebook-icon"></i>
+              </button>
+              <button type="button" (click)="socialLogin(socialIdentityProvider.google)">
+                <i class="google-icon"></i>
+              </button>
+            </div>
+
+            <div>
+                <input placeholder="Email"
+                formControlName="email" (change)="trimEmail($event.target.value)">
+                <div *ngIf="loginForm.get('email')?.hasError('required')" i18n="@@shared-emailRequiredMessage">Email
+                    is
+                    required</div>
+            </div>
+
+            <div>
+                <input placeholder="Password"
+                formControlName="password">
+                <div *ngIf="loginForm.get('password')?.hasError('required')" i18n="@@shared-emailRequiredMessage">password
+                    is
+                    required</div>
+            </div>
+
+
+          </div>
+          <div>
+            <button type="submit" data-attr="btnLogin" [disabled]="!loginForm.valid" color="primary" i18n="@@shared-login">Log
+              in</button>
+            <div class="have-account-wrap">
+              <div fxLayoutAlign="center" i18n="@@auth-login-dontHaveAccount">Don't have an account?&nbsp;&nbsp; <a
+                  [routerLink]="['/auth/signup/step-1']" (click)="clearStorage()" class="primary-link"> Sign up</a></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
